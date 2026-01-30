@@ -1,4 +1,5 @@
 # 🌊 Tamako 插件 | Tamako Plugin
+# 🌊 修改自止水插件
 
 > *一个为 Yunzai-Bot 打造的现代化多功能插件*
 
