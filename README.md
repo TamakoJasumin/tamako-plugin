@@ -1,3 +1,4 @@
+# 本插件Fork自止水插件
 # 🌊 止水插件 | ZhiShui Plugin
 
 > *一个为 Yunzai-Bot 打造的现代化多功能插件*
