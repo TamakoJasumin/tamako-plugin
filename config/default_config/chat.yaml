@@ -57,7 +57,7 @@ ApiList:
     ApiModel: "gemini-2.5-flash"
   - ApiType: "volcano"
     TencentAssistantId: ""
-    ApiUrl: "https://ark-cn-beijing.bytedance.net/api/v3/chat/completions"
+    ApiUrl: "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
     ApiKey: "你的火山引擎API Key"
     ApiModel: "doubao-seed-1-6-lite-251015"
 
