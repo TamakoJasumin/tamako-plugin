@@ -619,10 +619,10 @@ async function handleApiResponse(responseData, apiType, msg, e, systemMessage, c
             console.warn(`[Gemini] JSON解析遇到错误: ${parseResult.parseError}`);
         }
 
-        // 如果成功解析出JSON内容，直接使用原始JSON字符串（保持JSON格式）
+        // 如果成功解析出JSON内容，返回解析出的message内容
         // 如果解析失败，包装成JSON格式返回
         if (parseResult.isJson) {
-            return rawContent;
+            return parseResult.content;
         } else {
             return JSON.stringify({
                 message: parseResult.content,
