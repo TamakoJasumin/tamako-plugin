@@ -23,7 +23,7 @@ Master: 止水
 MasterQQ: 172679743
 
 # API配置数组，每个API为一个对象，包含类型、地址、密钥、模型等
-# 支持的API类型：openai, siliconflow, deepseek, zhipu, tencent, gemini
+# 支持的API类型：openai, siliconflow, deepseek, zhipu, tencent, gemini, volcano
 ApiList:
   - ApiType: "openai"
     TencentAssistantId: ""
@@ -55,6 +55,11 @@ ApiList:
     ApiUrl: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
     ApiKey: "你的Gemini API Key"
     ApiModel: "gemini-2.5-flash"
+  - ApiType: "volcano"
+    TencentAssistantId: ""
+    ApiUrl: "https://ark-cn-beijing.bytedance.net/api/v3/chat/completions"
+    ApiKey: "你的火山引擎API Key"
+    ApiModel: "doubao-seed-1-6-lite-251015"
 
 # 全局默认API索引（对应ApiList的下标）
 CurrentApiIndex: 0

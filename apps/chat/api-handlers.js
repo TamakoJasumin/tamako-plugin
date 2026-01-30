@@ -451,10 +451,34 @@ async function buildStandardRequest(aiModel, systemMessage, chatMsg, msg, e, val
     // 添加当前用户消息
     let userMsg = msg;
     let userInfo = null;
+    let images = [];
+    let failedImages = [];
     try {
         let msgObj = JSON.parse(msg);
         userMsg = msgObj.message || msg;
         userInfo = msgObj.additional_info || null;
+        
+        // 处理图片
+        if (Array.isArray(msgObj.images) && msgObj.images.length > 0) {
+            for (const imgUrl of msgObj.images) {
+                try {
+                    const res = await fetch(imgUrl);
+                    if (!res.ok) {
+                        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                    }
+                    const arrayBuffer = await res.arrayBuffer();
+                    const base64 = Buffer.from(arrayBuffer).toString('base64');
+                    let mime = 'image/jpeg';
+                    if (imgUrl.endsWith('.png')) mime = 'image/png';
+                    if (imgUrl.endsWith('.webp')) mime = 'image/webp';
+                    if (imgUrl.endsWith('.gif')) mime = 'image/gif';
+                    images.push({ type: 'image_url', image_url: { url: `data:${mime};base64,${base64}` } });
+                } catch (err) {
+                    console.error(`[Standard API] 图片下载失败: ${imgUrl}, 错误: ${err.message}`);
+                    failedImages.push({ url: imgUrl, error: err.message });
+                }
+            }
+        }
     } catch (err) {
         // msg 不是 JSON，直接使用
     }
@@ -466,7 +490,29 @@ async function buildStandardRequest(aiModel, systemMessage, chatMsg, msg, e, val
         fullUserMsg = `${userContext}\n用户说: ${userMsg}`;
     }
 
-    messages.push({ role: 'user', content: fullUserMsg });
+    // 构建符合OpenAI标准的多模态消息格式
+    let userMessage;
+    if (images.length > 0) {
+        userMessage = {
+            role: 'user',
+            content: [
+                { type: 'text', text: fullUserMsg },
+                ...images.map(img => ({ type: 'image_url', image_url: img.image_url }))
+            ]
+        };
+    } else {
+        userMessage = { role: 'user', content: fullUserMsg };
+    }
+
+    messages.push(userMessage);
+
+    // 如果有图片下载失败，通知用户
+    if (failedImages.length > 0 && typeof e.reply === 'function') {
+        const failedCount = failedImages.length;
+        const totalCount = msgObj.images?.length || failedCount;
+        const errorMsg = `【图片下载失败】共${totalCount}张图片，${failedCount}张下载失败，已提交${totalCount - failedCount}张给AI\n\n失败详情：\n${failedImages.map((item, index) => `${index + 1}. ${item.url}\n   原因：${item.error}`).join('\n\n')}`;
+        await e.reply(errorMsg);
+    }
 
     let requestData = {
         model: aiModel,
@@ -518,7 +564,22 @@ function handleHttpErrors(response, apiType) {
 async function handleApiResponse(responseData, apiType, msg, e, systemMessage, chatMsg, requestData) {
     if (apiType === 'tencent') {
         let rawContent = responseData.choices?.[0]?.message?.content?.trim() || '';
-        await addMessage({ role: 'user', content: msg }, e);
+        // 处理用户消息，确保图片信息被正确添加
+        let userContent = msg;
+        try {
+            const msgObj = JSON.parse(msg);
+            if (msgObj.images && msgObj.images.length > 0) {
+                // 构建包含图片信息的用户消息
+                userContent = {
+                    message: msgObj.message || '',
+                    images: msgObj.images,
+                    additional_info: msgObj.additional_info
+                };
+            }
+        } catch (err) {
+            // msg 不是 JSON，直接使用
+        }
+        await addMessage({ role: 'user', content: userContent }, e);
         await addMessage({ role: 'assistant', content: rawContent }, e);
         return rawContent;
     }
@@ -573,7 +634,24 @@ async function handleApiResponse(responseData, apiType, msg, e, systemMessage, c
     // 其他API格式
     let rawContent = responseData.choices[0].message.content.trim();
     const content = await Config.Chat.ShowReasoning ? rawContent : rawContent.replace(/(（\u63a8\u7406\u8fc7\u7a0b[：:][\s\S]*?）|\u63a8\u7406\u8fc7\u7a0b[：:][\s\S]*?)(?=\n\u7ed3\u8bba|\u7b54\u6848|$)/gi, '');
-    await addMessage({ role: 'user', content: msg }, e);
+    
+    // 处理用户消息，确保图片信息被正确添加
+    let userContent = msg;
+    try {
+        const msgObj = JSON.parse(msg);
+        if (msgObj.images && msgObj.images.length > 0) {
+            // 构建包含图片信息的用户消息
+            userContent = {
+                message: msgObj.message || '',
+                images: msgObj.images,
+                additional_info: msgObj.additional_info
+            };
+        }
+    } catch (err) {
+        // msg 不是 JSON，直接使用
+    }
+    
+    await addMessage({ role: 'user', content: userContent }, e);
     await addMessage({ role: 'assistant', content }, e);
     return content;
 }

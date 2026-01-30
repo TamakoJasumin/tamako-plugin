@@ -12,7 +12,8 @@ export const ApiTypes = {
     DEEPSEEK: 'deepseek',
     ZHIPU: 'zhipu',
     TENCENT: 'tencent',
-    GEMINI: 'gemini'
+    GEMINI: 'gemini',
+    VOLCANO: 'volcano'
 };
 
 /**
@@ -24,7 +25,8 @@ export const ApiTypeLabels = {
     [ApiTypes.DEEPSEEK]: 'DeepSeek',
     [ApiTypes.ZHIPU]: '智谱AI',
     [ApiTypes.TENCENT]: '腾讯元器',
-    [ApiTypes.GEMINI]: 'Gemini'
+    [ApiTypes.GEMINI]: 'Gemini',
+    [ApiTypes.VOLCANO]: '火山引擎'
 };
 
 /**
@@ -36,7 +38,8 @@ export const ApiTypeDescriptions = {
     [ApiTypes.DEEPSEEK]: 'DeepSeek API，兼容OpenAI格式，支持DeepSeek系列模型',
     [ApiTypes.ZHIPU]: '智谱AI API，兼容OpenAI格式，支持GLM系列模型',
     [ApiTypes.TENCENT]: '腾讯元器API，支持混元系列模型',
-    [ApiTypes.GEMINI]: 'Google Gemini API，支持Gemini系列模型，支持多模态和联网搜索'
+    [ApiTypes.GEMINI]: 'Google Gemini API，支持Gemini系列模型，支持多模态和联网搜索',
+    [ApiTypes.VOLCANO]: '火山引擎API，兼容OpenAI格式，支持豆包系列模型'
 };
 
 /**
@@ -48,7 +51,8 @@ export const ApiTypeSupportedParams = {
     [ApiTypes.DEEPSEEK]: ['temperature', 'top_p', 'max_tokens', 'presence_penalty', 'frequency_penalty', 'response_format'],
     [ApiTypes.ZHIPU]: ['temperature', 'top_p', 'max_tokens', 'presence_penalty', 'frequency_penalty', 'response_format'],
     [ApiTypes.TENCENT]: ['temperature', 'top_p', 'max_tokens'],
-    [ApiTypes.GEMINI]: ['temperature', 'top_p', 'max_tokens', 'response_mime_type', 'systemInstruction', 'tools']
+    [ApiTypes.GEMINI]: ['temperature', 'top_p', 'max_tokens', 'response_mime_type', 'systemInstruction', 'tools'],
+    [ApiTypes.VOLCANO]: ['temperature', 'top_p', 'max_tokens', 'presence_penalty', 'frequency_penalty', 'response_format']
 };
 
 /**
@@ -85,6 +89,11 @@ export const ApiTypeFeatures = {
         multimodal: true,
         webSearch: true,
         features: ['多模态', '联网']
+    },
+    [ApiTypes.VOLCANO]: {
+        multimodal: true,
+        webSearch: false,
+        features: ['多模态']
     }
 };
 
@@ -97,7 +106,8 @@ export const ApiTypeModelFormats = {
     [ApiTypes.DEEPSEEK]: 'openai',
     [ApiTypes.ZHIPU]: 'openai',
     [ApiTypes.TENCENT]: 'tencent',
-    [ApiTypes.GEMINI]: 'gemini'
+    [ApiTypes.GEMINI]: 'gemini',
+    [ApiTypes.VOLCANO]: 'openai'
 };
 
 /**
@@ -132,6 +142,11 @@ export const ApiTypeDefaults = {
     [ApiTypes.GEMINI]: {
         ApiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
         ApiModel: 'gemini-2.5-flash',
+        TencentAssistantId: ''
+    },
+    [ApiTypes.VOLCANO]: {
+        ApiUrl: 'https://ark-cn-beijing.bytedance.net/api/v3/chat/completions',
+        ApiModel: 'doubao-seed-1-6-lite-251015',
         TencentAssistantId: ''
     }
 };
