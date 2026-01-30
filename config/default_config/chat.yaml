@@ -1,5 +1,5 @@
 # 对话昵称
-NickName: 小七
+NickName: 小爱同学
 
 # 私聊是否通过AI回复
 EnablePrivateChat: true
@@ -11,61 +11,61 @@ OnlyMaster: false
 EnableVoice: false
 
 # 艾特开关
-EnableAt: false
+EnableAt: true
 
 # 发音人
 VoiceIndex: 23
 
 # 主人名字
-Master: 止水
+Master: tamako
 
 #主人QQ
-MasterQQ: 172679743
+MasterQQ: "2669183866"
 
 # API配置数组，每个API为一个对象，包含类型、地址、密钥、模型等
 # 支持的API类型：openai, siliconflow, deepseek, zhipu, tencent, gemini, volcano
 ApiList:
-  - ApiType: "openai"
+  - ApiType: openai
     TencentAssistantId: ""
-    ApiUrl: "https://api.openai.com/v1/chat/completions"
-    ApiKey: "你的OpenAI API Key"
-    ApiModel: "gpt-3.5-turbo"
-  - ApiType: "siliconflow"
+    ApiUrl: https://api.openai.com/v1/chat/completions
+    ApiKey: 你的OpenAI API Key
+    ApiModel: gpt-3.5-turbo
+  - ApiType: siliconflow
     TencentAssistantId: ""
-    ApiUrl: "https://api.siliconflow.cn/v1/chat/completions"
-    ApiKey: "你的siliconflow key"
-    ApiModel: "Qwen/Qwen2.5-7B-Instruct"
-  - ApiType: "deepseek"
+    ApiUrl: https://api.siliconflow.cn/v1/chat/completions
+    ApiKey: 你的siliconflow key
+    ApiModel: Qwen/Qwen2.5-7B-Instruct
+  - ApiType: deepseek
     TencentAssistantId: ""
-    ApiUrl: "https://api.deepseek.com/v1/chat/completions"
-    ApiKey: "你的DeepSeek API Key"
-    ApiModel: "deepseek-chat"
-  - ApiType: "zhipu"
+    ApiUrl: https://api.deepseek.com/v1/chat/completions
+    ApiKey: 你的DeepSeek API Key
+    ApiModel: deepseek-chat
+  - ApiType: zhipu
     TencentAssistantId: ""
-    ApiUrl: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
-    ApiKey: "你的智谱AI API Key"
-    ApiModel: "glm-4"
-  - ApiType: "tencent"
-    TencentAssistantId: "你的腾讯助手ID"
-    ApiUrl: "https://yuanqi.tencent.com/openapi/v1/agent/chat/completions"
-    ApiKey: "你的腾讯元器key"
-    ApiModel: "hunyuan-lite"
-  - ApiType: "gemini"
+    ApiUrl: https://open.bigmodel.cn/api/paas/v4/chat/completions
+    ApiKey: 你的智谱AI API Key
+    ApiModel: glm-4
+  - ApiType: tencent
+    TencentAssistantId: 你的腾讯助手ID
+    ApiUrl: https://yuanqi.tencent.com/openapi/v1/agent/chat/completions
+    ApiKey: 你的腾讯元器key
+    ApiModel: hunyuan-lite
+  - ApiType: gemini
     TencentAssistantId: ""
-    ApiUrl: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
-    ApiKey: "你的Gemini API Key"
-    ApiModel: "gemini-2.5-flash"
-  - ApiType: "volcano"
+    ApiUrl: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent
+    ApiKey: 你的Gemini API Key
+    ApiModel: gemini-2.5-flash
+  - ApiType: volcano
+    ApiUrl: https://ark.cn-beijing.volces.com/api/v3/chat/completions
+    ApiKey: 3f404baa-2920-4c6c-8edb-a557a860054d
+    ApiModel: doubao-seed-1-6-lite-251015
     TencentAssistantId: ""
-    ApiUrl: "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
-    ApiKey: "你的火山引擎API Key"
-    ApiModel: "doubao-seed-1-6-lite-251015"
 
 # 全局默认API索引（对应ApiList的下标）
-CurrentApiIndex: 0
+CurrentApiIndex: 6
 
 # 对话历史最大长度
-MaxHistory: 20
+MaxHistory: 50
 
 # 当前使用的角色索引（从0开始）
 CurrentRoleIndex: 0
