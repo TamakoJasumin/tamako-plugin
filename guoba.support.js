@@ -5,7 +5,7 @@ import path from 'path'
 import { getApiTypeOptions } from './apps/chat/api-types.js'
 
 const Path = process.cwd()
-const PluginPath = `${Path}/plugins/zhishui-plugin`
+const PluginPath = `${Path}/plugins/tamako-plugin`
 
 // 获取角色配置
 let roleContent, RoleList, VoiceList = [];
@@ -28,7 +28,7 @@ export function supportGuoba() {
             try {
                 VoiceList = await Data.readVoiceList();
             } catch (err) {
-                console.error('止水插件-语音列表加载失败:', err);
+                console.error('Tamako插件-语音列表加载失败:', err);
                 VoiceList = [];
             }
         }
@@ -36,11 +36,11 @@ export function supportGuoba() {
 
     return {
         pluginInfo: {
-            name: "zhishui-plugin",
-            title: "止水插件",
-            author: "@止水",
-            authorLink: "http://zj.qxyys.com",
-            link: "https://gitee.com/fjcq/zhishui-plugin",
+            name: "tamako-plugin",
+            title: "Tamako插件",
+            author: "TamakoJasumin",
+            authorLink: "https://github.com/TamakoJasumin",
+            link: "https://github.com/TamakoJasumin/tamako-plugin",
             isV3: true,
             isV2: false,
             description: "提供了搜剧、AI对话、乐器演奏等娱乐功能。",
@@ -704,14 +704,14 @@ export function supportGuoba() {
                         userResourceList: userResourceList || []
                     };
                 } catch (err) {
-                    console.error('止水插件-获取配置数据失败:', err);
-                    return {
-                        videoSearch: {},
-                        chat: {},
-                        proxy: {},
-                        roleList: []
-                    };
-                }
+                        console.error('Tamako插件-获取配置数据失败:', err);
+                        return {
+                            videoSearch: {},
+                            chat: {},
+                            proxy: {},
+                            roleList: []
+                        };
+                    }
             },
 
             async setConfigData(data, { Result, action }) {
@@ -759,7 +759,7 @@ export function supportGuoba() {
                                 roleList: roleList || []
                             };
                         } catch (err) {
-                            console.error('止水插件-获取配置数据失败:', err);
+                            console.error('Tamako插件-获取配置数据失败:', err);
                             return {
                                 videoSearch: {},
                                 chat: {},

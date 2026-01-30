@@ -3,7 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import Ver from './components/Version.js';
 
-logger.info(chalk.yellow(`止水插件 v${Ver.ver} 正在加载...`));
+logger.info(chalk.yellow(`Tamako 插件 v${Ver.ver} 正在加载...`));
 
 // 检查依赖
 import { checkPackage } from './components/check.js';
@@ -20,7 +20,7 @@ if (!global.segment) {
     }
 }
 
-const appsDir = path.join('./plugins/zhishui-plugin/apps');
+const appsDir = path.join('./plugins/tamako-plugin/apps');
 if (!fs.existsSync(appsDir)) {
     logger.error(chalk.red('apps 目录不存在！'));
     throw new Error('apps 目录不存在');
@@ -45,5 +45,5 @@ for (let i in files) {
     // 取模块默认导出或第一个导出
     apps[name] = ret[i].value[Object.keys(ret[i].value)[0]];
 }
-logger.info(chalk.yellow(`止水插件 加载完成~！`));
+logger.info(chalk.yellow(`Tamako 插件 加载完成~！`));
 export { apps };

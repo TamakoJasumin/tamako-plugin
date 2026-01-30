@@ -10,7 +10,7 @@ import YamlReader from './YamlReader.js'
 import _path from 'path'
 const Path = process.cwd() // 当前工作目录
 // 定义插件名称
-const Plugin_Name = 'zhishui-plugin'
+const Plugin_Name = 'tamako-plugin'
 // 计算插件的完整路径
 const Plugin_Path = _path.join(Path, 'plugins', Plugin_Name);
 // 导出配置、数据、版本、路径、插件名和插件路径以及YamlReader

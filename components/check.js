@@ -28,9 +28,9 @@ function extractPackageName(errorStack) {
 export function packageTips(error) {
     const loggerMark = logger.mark.bind(logger);
 
-    loggerMark('---- 止水插件启动失败 ----');
+    loggerMark('---- Tamako插件启动失败 ----');
     const missingPackage = chalk.red(extractPackageName(error.stack));
     loggerMark(`缺少依赖：${missingPackage}`);
-    loggerMark(`请执行安装依赖命令：pnpm install --filter=zhishui-plugin`);
+    loggerMark(`请执行安装依赖命令：pnpm install --filter=tamako-plugin`);
     loggerMark('---------------------');
 }

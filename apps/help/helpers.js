@@ -12,7 +12,7 @@ import { helpType } from './config.js';
  * @returns {string} 背景图片文件名
  */
 export async function rodom() {
-  let image = fs.readdirSync('./plugins/zhishui-plugin/resources/help/imgs/');
+  let image = fs.readdirSync('./plugins/tamako-plugin/resources/help/imgs/');
   let list_img = [];
   for (let val of image) {
     list_img.push(val);
@@ -28,7 +28,7 @@ export async function rodom() {
  */
 export async function help(e) {
   let custom = {};
-  const special = e.msg.match(/^#?止水(插件)?(搜剧|对话)?(帮助|菜单|功能)$/)[2];
+  const special = e.msg.match(/^#?Tamako(插件)?(搜剧|对话)?(帮助|菜单|功能)$/)[2];
 
   let diyCfg, sysCfg;
   if (special) {

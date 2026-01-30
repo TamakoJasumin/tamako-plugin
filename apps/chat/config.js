@@ -4,7 +4,7 @@ import path from 'path';
 /**
  * 对话上下文缓存路径
  */
-export const CHAT_CONTEXT_PATH = path.join(process.cwd(), 'plugins', 'zhishui-plugin', 'resources', 'data', 'chat');
+export const CHAT_CONTEXT_PATH = path.join(process.cwd(), 'plugins', 'tamako-plugin', 'resources', 'data', 'chat');
 
 /**
  * 存储每个会话的活跃状态

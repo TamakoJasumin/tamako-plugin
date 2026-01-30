@@ -3,19 +3,19 @@ import { common } from "../model/index.js"
 import { Plugin_Name } from "../components/index.js"
 import { update } from "../../other/update.js"
 
-export class zhishuiUpdate extends plugin {
+export class tamakoUpdate extends plugin {
     constructor() {
         super({
-            name: "止水更新插件",
+            name: "Tamako更新插件",
             event: "message",
             priority: 1000,
             rule: [
                 {
-                    reg: "^#*止水(插件)?(强制)?更新$",
+                    reg: "^#*Tamako(插件)?(强制)?更新$",
                     fnc: "update"
                 },
                 {
-                    reg: "^#?止水(插件)?更新日志$",
+                    reg: "^#?Tamako(插件)?更新日志$",
                     fnc: "update_log"
                 }
             ]
@@ -30,7 +30,7 @@ export class zhishuiUpdate extends plugin {
 
         try {
             e.isMaster = true
-            e.msg = `#${e.msg.includes("强制") ? "强制" : ""}更新zhishui-plugin`
+            e.msg = `#${e.msg.includes("强制") ? "强制" : ""}更新tamako-plugin`
             const up = new update()  // 注意保持小写
             up.e = e
             return up.update()

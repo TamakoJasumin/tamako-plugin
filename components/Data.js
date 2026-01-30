@@ -3,7 +3,7 @@ import _ from 'lodash';
 import path from 'path';
 
 const _path = process.cwd();
-const plugin = 'zhishui-plugin';
+const plugin = 'tamako-plugin';
 const getRoot = (root = '') => {
   if (root === 'root' || root === 'yunzai') {
     root = `${_path}/`;
@@ -135,7 +135,7 @@ let Data = {
     let sysCfg = await Data.importModule(`config/system/${key}_system.js`);
     let diyCfg = await Data.importModule(`config/${key}.js`);
     if (diyCfg.isSys) {
-      logger.error(`zhishui-plugin: config/${key}.js无效，已忽略`);
+      logger.error(`tamako-plugin: config/${key}.js无效，已忽略`);
       logger.error(`如需配置请复制config/${key}_default.js为config/${key}.js，请勿复制config/system下的系统文件`);
       diyCfg = {};
     }

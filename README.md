@@ -1,5 +1,4 @@
-# 本插件Fork自止水插件
-# 🌊 止水插件 | ZhiShui Plugin
+# 🌊 Tamako 插件 | Tamako Plugin
 
 > *一个为 Yunzai-Bot 打造的现代化多功能插件*
 
@@ -7,9 +6,7 @@
 ![node](https://img.shields.io/badge/node-%3E%3D16-brightgreen.svg?style=flat-square)
 ![bot](https://img.shields.io/badge/bot-Yunzai--Bot-orange.svg?style=flat-square)
 
-[![Gitee Star](https://gitee.com/fjcq/zhishui-plugin/badge/star.svg?theme=gvp)](https://gitee.com/fjcq/zhishui-plugin/stargazers)
-[![GitHub Star](https://img.shields.io/github/stars/fjcq/zhishui-plugin?style=flat-square&logo=github&color=gold)](https://github.com/fjcq/zhishui-plugin/stargazers)
-[![访问量](https://visitor-badge.glitch.me/badge?page_id=fjcq.zhishui-plugin&right_color=blueviolet&left_text=访问量)](https://gitee.com/fjcq/zhishui-plugin)
+[![GitHub Star](https://img.shields.io/github/stars/TamakoJasumin/tamako-plugin?style=flat-square&logo=github&color=gold)](https://github.com/TamakoJasumin/tamako-plugin/stargazers)
 
 ---
 
@@ -64,14 +61,10 @@
 在 Yunzai-Bot 根目录执行以下命令：
 
 ```bash
-# 国内网络推荐
-git clone https://gitee.com/fjcq/zhishui-plugin.git ./plugins/zhishui-plugin
-
-# 国外网络推荐
-git clone https://github.com/fjcq/zhishui-plugin.git ./plugins/zhishui-plugin
+git clone https://github.com/TamakoJasumin/tamako-plugin.git ./plugins/tamako-plugin
 
 # 安装依赖
-pnpm install --filter=zhishui-plugin
+pnpm install --filter=tamako-plugin
 ```
 
 ### 插件更新
@@ -92,7 +85,7 @@ pnpm install --filter=zhishui-plugin
 
 #### 手动配置
 
-配置文件位于 `plugins/zhishui-plugin/config/` 目录：
+配置文件位于 `plugins/tamako-plugin/config/` 目录：
 
 - `videoSearch.yaml` - 搜剧功能配置
 - `chat.yaml` - AI对话功能配置
@@ -100,7 +93,7 @@ pnpm install --filter=zhishui-plugin
 - `whole.yaml` - 全局设置
 - `proxy.yaml` - 代理设置
 
-默认配置位于 `plugins/zhishui-plugin/config/default_config/` 目录，可参考其格式进行自定义配置。
+默认配置位于 `plugins/tamako-plugin/config/default_config/` 目录，可参考其格式进行自定义配置。
 
 ---
 
@@ -387,8 +380,7 @@ ffmpeg -version
 
 遇到问题或有新功能建议？欢迎提交 Issue：
 
-- [Gitee Issues](https://gitee.com/fjcq/zhishui-plugin/issues)
-- [GitHub Issues](https://github.com/fjcq/zhishui-plugin/issues)
+- [GitHub Issues](https://github.com/TamakoJasumin/tamako-plugin/issues)
 
 ### 代码贡献
 
@@ -444,4 +436,4 @@ QQ群：[556388103](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=nHBGClQFxzzlokib8T
 
 如果这个项目对你有帮助，请给个 Star 支持一下
 
-> Made with ❤️ by [fjcq](https://gitee.com/fjcq)
+> Made with ❤️ by TamakoJasumin

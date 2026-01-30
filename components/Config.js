@@ -5,7 +5,7 @@ import YamlReader from './YamlReader.js';
 import _ from 'lodash';
 
 const Path = process.cwd();
-const Plugin_Name = 'zhishui-plugin';
+const Plugin_Name = 'tamako-plugin';
 const Plugin_Path = `${Path}/plugins/${Plugin_Name}`;
 class Config {
     constructor() {
@@ -286,7 +286,7 @@ class Config {
         watcher.on('change', path => {
             delete this.config[key];
             if (typeof Bot == 'undefined') return;
-            logger.mark(`[止水修改配置文件][${type}][${name}]`);
+            logger.mark(`[Tamako修改配置文件][${type}][${name}]`);
             if (this[`change_${name}`]) {
                 this[`change_${name}`]();
             }
@@ -359,13 +359,13 @@ class Config {
     async GetUserSearchVideos(qq, keys) {
         if (typeof keys === 'string') {
             // 单个键查询，直接返回结果
-            const path = `zhishui:SearchVideos:${qq.toString()}:${keys}`;
+            const path = `tamako:SearchVideos:${qq.toString()}:${keys}`;
             const value = await redis.get(path);
             return value !== null && value !== undefined ? value : '';
         } else {
             try {
                 let promises = keys.map(async (key) => {
-                    const path = `zhishui:SearchVideos:${qq.toString()}:${key}`;
+                    const path = `tamako:SearchVideos:${qq.toString()}:${key}`;
                     const value = await redis.get(path);
                     return value !== null && value !== undefined ? value : '';
                 });
@@ -393,7 +393,7 @@ class Config {
    */
     async SetUserSearchVideos(qq, key, value) {
         try {
-            const path = `zhishui:SearchVideos:${qq.toString()}:${key}`;
+            const path = `tamako:SearchVideos:${qq.toString()}:${key}`;
             const ret = await redis.set(path, value);
             return ret;
         } catch (error) {
@@ -411,13 +411,13 @@ class Config {
     async GetUserChatConfig(qq, keys) {
         if (typeof keys === 'string') {
             // 单个键查询，直接返回结果
-            const path = `zhishui:ChatConfig:${qq.toString()}:${keys}`;
+            const path = `tamako:ChatConfig:${qq.toString()}:${keys}`;
             const value = await redis.get(path);
             return value !== null && value !== undefined ? JSON.parse(value) : null;
         } else {
             try {
                 let promises = keys.map(async (key) => {
-                    const path = `zhishui:ChatConfig:${qq.toString()}:${key}`;
+                    const path = `tamako:ChatConfig:${qq.toString()}:${key}`;
                     const value = await redis.get(path);
                     return value !== null && value !== undefined ? JSON.parse(value) : null;
                 });
@@ -443,7 +443,7 @@ class Config {
      */
     async SetUserChatConfig(qq, key, value) {
         try {
-            const path = `zhishui:ChatConfig:${qq.toString()}:${key}`;
+            const path = `tamako:ChatConfig:${qq.toString()}:${key}`;
             const ret = await redis.set(path, JSON.stringify(value));
             return ret;
         } catch (error) {
@@ -459,7 +459,7 @@ class Config {
      */
     async DeleteUserChatConfig(qq, key) {
         try {
-            const path = `zhishui:ChatConfig:${qq.toString()}:${key}`;
+            const path = `tamako:ChatConfig:${qq.toString()}:${key}`;
             const ret = await redis.del(path);
             return ret;
         } catch (error) {
@@ -476,7 +476,7 @@ class Config {
      */
     async DeleteUserSearchVideos(qq, key) {
         try {
-            const path = `zhishui:SearchVideos:${qq.toString()}:${key}`;
+            const path = `tamako:SearchVideos:${qq.toString()}:${key}`;
             const ret = await redis.del(path);
             return ret;
         } catch (error) {
@@ -492,7 +492,7 @@ class Config {
      */
     async GetAllUserRoleConfigs() {
         try {
-            const pattern = `zhishui:ChatConfig:*:RoleIndex`;
+            const pattern = `tamako:ChatConfig:*:RoleIndex`;
             const keys = await redis.keys(pattern);
             
             if (!keys || keys.length === 0) {
@@ -501,7 +501,7 @@ class Config {
 
             const results = [];
             for (const key of keys) {
-                const match = key.match(/zhishui:ChatConfig:(\d+):RoleIndex/);
+                const match = key.match(/tamako:ChatConfig:(\d+):RoleIndex/);
                 if (match) {
                     const qq = match[1];
                     const roleIndex = await redis.get(key);
@@ -529,7 +529,7 @@ class Config {
      */
     async GetAllUserResourceConfigs() {
         try {
-            const pattern = `zhishui:SearchVideos:*:idx`;
+            const pattern = `tamako:SearchVideos:*:idx`;
             const keys = await redis.keys(pattern);
             
             if (!keys || keys.length === 0) {
@@ -538,7 +538,7 @@ class Config {
 
             const results = [];
             for (const key of keys) {
-                const match = key.match(/zhishui:SearchVideos:(\d+):idx/);
+                const match = key.match(/tamako:SearchVideos:(\d+):idx/);
                 if (match) {
                     const qq = match[1];
                     const resourceIndex = await redis.get(key);
